@@ -1,0 +1,21 @@
+.headerWrapper {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    max-height: 70px;
+    background: #001529;
+}
+
+.logo {
+    color: #d7d7a7;
+    font-family: sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.buttonWrapper {
+    display: flex;
+    align-items: center;
+}
