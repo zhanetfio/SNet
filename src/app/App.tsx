@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import {Header} from "./common/components/header/Header";
-import {Nav} from "./common/components/nav/Nav";
+import {Header} from "../common/components/header/Header";
+import {Nav} from "../common/components/nav/Nav";
 
 function App() {
     return (
