@@ -14,8 +14,6 @@ export const contactsAPI = {
             .then((res) => {
                 return res.data;
             })
-
-
     },
     follow(userId: number) {
         return (
@@ -33,7 +31,6 @@ export const contactsAPI = {
                 })
         )
     }
-
 }
 
 export const profileAPI = {

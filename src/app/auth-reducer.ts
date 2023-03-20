@@ -1,4 +1,4 @@
-import {AppDispatch} from "./store";
+import {AppDispatch, AppThunk} from "./store";
 import {authAPI, LoginDataType} from "../api/api";
 
 
@@ -37,28 +37,35 @@ export const setUserData = (id: number | null, email: string | null, login: stri
     } as const
 }
 
-export const getAuthUserDataTC = () => (dispatch: AppDispatch) => {
-    authAPI.me()
-        .then(res => {
-            if (res.data.resultCode === 0) {
-                dispatch(setUserData(res.data.id, res.data.email, res.data.login, true))
-            }
-
-        })
-}
-export const setLoginDataTC = (data: LoginDataType) => (dispatch: AppDispatch) => {
-    authAPI.login(data)
-        .then(res => {
-            dispatch(getAuthUserDataTC())
-        })
-
+export const getAuthUserDataTC = (): AppThunk => async (dispatch: AppDispatch) => {
+    try {
+        const res = await authAPI.me()
+        if (res.data.resultCode === 0) {
+            dispatch(setUserData(res.data.id, res.data.email, res.data.login, true))
+        }
+    } catch (e) {
+        alert('Auth error!')
+    }
 }
 
-export const setLogoutTC = () => (dispatch: AppDispatch) => {
-    authAPI.logout()
-        .then(res => {
-            dispatch(setUserData(null,null,null,false))
-        })
+export const setLoginDataTC = (data: LoginDataType) =>async (dispatch: AppDispatch) => {
+    try {
+       const res= await authAPI.login(data)
+        dispatch(getAuthUserDataTC())
+    }
+  catch (e){
+        alert ('Error!')
+  }
+
+}
+
+export const setLogoutTC = (): AppThunk => async (dispatch: AppDispatch) => {
+    try {
+        const res = await authAPI.logout()
+        dispatch(setUserData(null, null, null, false))
+    } catch (e) {
+        alert('Log out error!')
+    }
 
 }
 
