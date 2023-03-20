@@ -12,6 +12,7 @@ import {Profile} from "../../../features/profile/Profile";
 import {Route, Routes, useNavigate} from "react-router-dom";
 import {Dialogs} from "../../../features/dialogs/Dialogs";
 import {Contacts} from "../../../features/contacts/Contacts";
+import {Login} from '../../../features/auth/Login';
 
 
 const {Header, Sider} = Layout;
@@ -59,6 +60,7 @@ export const Nav = () => {
                         })}
                     </Header>
                     <Routes>
+                        <Route path={'/login'} element={<Login/>} />
                         <Route path={'/profile'} element={<Profile/>}/>
                         <Route path={'/dialogs'} element={<Dialogs/>}/>
                         <Route path={'/contacts'} element={<Contacts/>}/>
