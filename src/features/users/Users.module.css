@@ -1,0 +1,28 @@
+.container {
+    width: 70vw;
+}
+
+.users {
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px;
+}
+.userImage{
+
+    margin: 5px;
+}
+.followUnfollowButton{
+  text-align: center;
+    background-color: #d7d7a7;
+    color: #001529;
+}
+.followUnfollowButton:hover{
+
+}

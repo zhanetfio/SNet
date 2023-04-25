@@ -49,12 +49,14 @@ export const ProfileInfo: React.FC<ProfileInfoPropsType> = ({
             <div className={s.descriptionBlock}>
                 <div className={s.statusInfo}>
                     <div className={s.avatar}>
-                        <img src={profile.photos?.large || `${<Avatar
-                            shape="square" size={45}
-                            icon={<UserOutlined/>}
-                        />}`}
+                        {profile.photos?.large
+                       ? <img src={profile.photos?.large }
                              className={s.mainPhoto}
                              alt={'large avatar'}/>
+                            :<Avatar shape="square" size={45}
+                                     icon={<UserOutlined/>}
+                            />
+                             }
                         <div className={s.camera_button}>
                             <Button
                                 type="default"
@@ -147,88 +149,3 @@ const ProfileData: React.FC<ProfileDataType> = ({profile, isOwner, goToEditMode}
 const Contact: React.FC<ContactType> = ({contactTitle, contactValue}) => {
     return <div className={s.contact}><span className={s.title}>{contactTitle}: </span> {contactValue}</div>
 }
-
-
-//
-// const {Content} = Layout;
-// const {TextArea} = Input;
-// const {Paragraph} = Typography;
-//
-//
-// export const ProfileInfo = () => {
-//     const dispatch = useAppDispatch()
-//     const userID = useAppSelector(state => state.profile.profile?.userId)
-//     const avatar = useAppSelector(state => state.profile.profile?.photos?.large)
-//     const name = useAppSelector(state => state.profile.profile?.fullName)
-//     const users = useAppSelector(state => state.profile.profile?.users)
-//
-//     /*const [value, setValue] = useState('');*/
-//
-//     /*  const newUserAvatar = avatar ? avatar : ''*/
-//
-//     /*   const changeAvatar = (avatar: string,userID:number) => {
-//            dispatch(changePhotoTC(avatar,userID))
-//        };*/
-//
-//     const addImage = (e: ChangeEvent<HTMLInputElement>) => {
-//
-//         if (e.target.files?.length) {
-//             changePhotoTC(e.target.files[0])
-//             console.log(e.target.files[0])
-//         }
-//        /*   else return*/
-//     }
-//
-//     useEffect(() => {
-//         if (userID) {
-//             dispatch(getUserProfile(userID))
-//         }
-//     }, [userID])
-//
-//     return (
-//         <div>
-//             <Content
-//                 style={{
-//                     display: 'flex',
-//                     margin: '10px 16px',
-//                     padding: 14,
-//                     minHeight: 200,
-//                     background: '#f5f5f5',
-//                 }}
-//             >
-//                 <Row gutter={12} style={{flexFlow: 'nowrap'}}>
-//                     <Col span={12}>
-//                         <label>
-//                             <input type="file"
-//                                    name='file'
-//                                    onChange={addImage}
-//                                    style={{display: 'none'}}
-//                             />
-//                                <button >
-//                                 Upload button
-//                             </button>
-//
-//                             <Avatar src={avatar ? avatar : "https://joesch.moe/api/v1/random?key=1"}
-//                                     style={{marginRight: 20}}
-//                                     shape="square" size={150}/>
-//                         </label>
-//                     </Col>
-//
-//                     <Col span={12}>
-//                         <div className={style.about}>
-//                             <Paragraph style={{fontSize: 20}}>{name}</Paragraph>
-//                             <span style={{fontWeight: 700}}>Looking for a a job:</span>
-//                             <TextArea value={'Frontend Developer (React)'} bordered={false}/>
-//                         </div>
-//                     </Col>
-//                     <Col span={12}>
-//                         <div style={{fontWeight: 700}}>You can find me:</div>
-//                         <Paragraph><span
-//                             style={{fontWeight: 500}}> GitHub:</span>{users ? users.github : '..add link'} GitHub:{users ? users.github : '..add link'}
-//                         </Paragraph>
-//                     </Col>
-//                 </Row>
-//             </Content>
-//         </div>
-//     );
-// };

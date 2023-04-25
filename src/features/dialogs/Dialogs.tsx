@@ -4,6 +4,7 @@ import {Message, MessageType} from './message/Message';
 import {AddMessageFormRedux} from './addMessageForm/AddMessageForm';
 import {DialogItem, DialogsType} from './dialogItem/DialogItem';
 import {Redirect} from 'react-router-dom';
+import {Layout} from 'antd';
 
 type DialogsPageType = {
     dialogs: Array<DialogsType>
@@ -12,6 +13,7 @@ type DialogsPageType = {
     sendMessage: (values: string) => void
     isAuth: boolean
 }
+const{Content}=Layout;
 
 export const Dialogs = (props: DialogsPageType) => {
 
@@ -31,10 +33,12 @@ export const Dialogs = (props: DialogsPageType) => {
             <div className={styles.dialogsItems}>
                 {dialogsElements}
             </div>
+            <Content style={{backgroundColor:'#001529',borderRadius:'20px',minWidth:"50vw",height:'75vh'}}>
             <div className={styles.messages}>
-                <div>{messagesElements}</div>
+                <div className={styles.messagesBlock}>{messagesElements}</div>
                 <AddMessageFormRedux onSubmit={addNewMessage}/>
             </div>
+            </Content>
         </div>
     );
 };

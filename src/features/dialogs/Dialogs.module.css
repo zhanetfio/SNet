@@ -1,6 +1,5 @@
 .dialogs {
     display: flex;
-    align-items: center;
     padding: 15px;
     gap: 15px;
     border-radius: 15px;
@@ -11,14 +10,20 @@
     border-radius: 15px;
     padding: 15px;
 }
+.messagesBlock{
+    height: 500px;
+    background-color: beige;
+    color: #000;
+}
 
 .messages {
     padding: 50px;
 }
 
 .messages .message {
-    color: white;
-    border: 1px solid;
+    margin: 10px 5px;
+    color: #001529;
+
 }
 
 .avatar {

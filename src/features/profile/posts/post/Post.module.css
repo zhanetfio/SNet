@@ -1,0 +1,12 @@
+.item{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 20px 0;
+}
+.item img{
+    margin-right: 10px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
