@@ -1,7 +1,39 @@
 import React from 'react';
-import {Avatar, Badge, Button, Card, Input, Layout} from "antd";
-import {DeleteOutlined, EditOutlined, LikeOutlined} from "@ant-design/icons";
+import styles from './Posts.module.css';
+import {Post, PostsType} from './post/Post';
+import {AddNewPostFormRedux} from './addNewPostForm/AddNewPostFormRedux';
 
+
+type PropsType = {
+    posts: Array<PostsType>
+    messageForNewPost: string
+    addPost: (postMessage: string) => void
+}
+
+export const Posts = React.memo((props: PropsType) => {
+
+    const postsElements = [...props.posts]
+        .reverse()
+        .map(p => <Post key={p.id} id={p.id} message={p.message}
+                        likesCount={p.likesCount}/>)
+
+    const onAddPost = (values: { newPostText: string }) => {
+        props.addPost(values.newPostText)
+        values.newPostText = ''
+    }
+
+    return (
+        <div className={styles.postsBlock}>
+            <AddNewPostFormRedux onSubmit={onAddPost}/>
+            <div className={styles.posts}>
+                {postsElements}
+            </div>
+        </div>
+
+    );
+})
+
+/*
 
 const { Content} = Layout;
 const {TextArea} = Input;
@@ -64,3 +96,4 @@ export const Posts = () => {
         </div>
     );
 };
+*/

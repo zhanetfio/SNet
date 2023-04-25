@@ -1,0 +1,61 @@
+.descriptionBlock {
+    display: flex;
+    padding: 10px;
+    margin-top: 25px;
+}
+.statusInfo{
+    display: flex;
+    flex-direction: column;
+}
+
+.profileImg img {
+    width: 100%;
+
+}
+
+.camera_button {
+    justify-content: flex-start;
+    padding-left: 10px;
+
+}
+
+.avatar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 50px;
+}
+
+.mainPhoto {
+    max-width: 120px;
+    border-radius: 50%;
+}
+
+.contact {
+    width: 400px;
+    border-radius: 15px;
+    /* text-shadow: #1890ff 0 0 2px;*/
+}
+
+.title {
+    margin: 10px 0;
+    font-weight: 500;
+    color: #001529;
+
+}
+
+.profile_container {
+
+}
+
+
+.button_edit {
+    text-align: center;
+    top: 40px;
+    left: 10px;
+}
+
+.selfInfo {
+    display: block;
+}

@@ -1,16 +1,102 @@
 import React from 'react';
 import './App.css';
-import {Header} from "../common/components/header/Header";
-import {Nav} from "../common/components/nav/Nav";
+import {connect, Provider} from 'react-redux';
+import {compose} from 'redux';
+import {Footer} from '../common/components/footer/Footer';
+import HeaderContainer from '../common/components/header/HeaderContainer';
+import {Preloader} from '../common/preloader/Preloader';
+import store, {AppRootStateType} from './store';
+import {BrowserRouter, Redirect, Route, Switch, withRouter} from 'react-router-dom';
+import {Layout, notification} from 'antd';
+import {withSuspense} from '../hocs/withSuspense';
+import {LoginForm} from '../features/auth/Login';
+import {Error404} from '../common/error/Error404';
+import {Nav} from '../common/components/nav/Nav';
+import {initializeApp} from './app-reducer';
 
-function App() {
-    return (
-        <div className="App">
-            <Header/>
-            <Nav/>
+const DialogsContainer = React.lazy(() => import('../features/dialogs/DialogsContainer'));
+const ProfileContainer = React.lazy(() => import('../features/profile/ProfileContainer'));
+const UsersContainer = React.lazy(() => import('../features/users/UsersContainer'));
 
-        </div>
-    );
+
+type MapStatePropsType = {
+    initialized: boolean,
+    globalError: string | null
 }
 
-export default App;
+type MapDispatchToPropsType = {
+    initializeApp: () => void
+}
+
+export type AppPropsType = MapStatePropsType & MapDispatchToPropsType
+
+class App extends React.Component<AppPropsType> {
+    catchAllUnhandledErrors = (promiseRejectionEvent: PromiseRejectionEvent) => {
+        console.error(promiseRejectionEvent)
+    }
+
+    componentDidMount() {
+        this.props.initializeApp();
+        window.addEventListener('unhandledrejection', this.catchAllUnhandledErrors);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('unhandledrejection', this.catchAllUnhandledErrors);
+    }
+
+    openNotificationWithIcon = (type: 'error') => {
+        notification[type]({
+            message: this.props.globalError
+        });
+    };
+
+    componentDidUpdate() {
+        if (this.props.globalError) {
+            this.openNotificationWithIcon('error')
+        }
+    }
+
+    render() {
+        if (!this.props.initialized) {
+            return <Preloader/>
+        }
+
+        return (
+            <Layout className={'app-wrapper'}>
+                <HeaderContainer/>
+                <Layout>
+                    <Nav/>
+                    <Switch>
+                        <Route exact path="/" render={() => <Redirect to={'/login'}/>}/>
+                        <Route path="/login" render={withSuspense(LoginForm)}/>
+                        <Route path="/profile/:userId?"
+                               render={withSuspense(ProfileContainer)}/>
+                        <Route path="/dialogs" render={withSuspense(DialogsContainer)}/>
+                        <Route path="/users" render={withSuspense(UsersContainer)}/>
+                        <Route path={'*'} render={() => <div><Error404/></div>}/>
+                    </Switch>
+                </Layout>
+                <Footer/>
+            </Layout>
+
+        );
+    }
+}
+
+const mapStateToProps = (state: AppRootStateType): MapStatePropsType => ({
+
+    initialized: state.app.initialized,
+    globalError: state.app.globalError
+})
+
+let AppContainer = compose
+    < React.ComponentType > (withRouter, connect<MapStatePropsType, MapDispatchToPropsType, {},
+        AppRootStateType>(mapStateToProps, {initializeApp}))(App);
+
+export const GeneralApp = () => {
+    return <BrowserRouter>
+        <Provider store={store}>
+            <AppContainer/>
+        </Provider>
+    </BrowserRouter>
+}

@@ -15,7 +15,17 @@
     align-items: center;
 }
 
-.buttonWrapper {
+.loginBlock {}
+
+.logout{
+    width: 200px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
+    color:#d7d7a7;
+}
+.avatar{
+    width: 35px;
+    height: 35px;
+    border-radius: 17px;
 }

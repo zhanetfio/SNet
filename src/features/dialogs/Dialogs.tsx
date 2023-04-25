@@ -1,7 +1,51 @@
 import React from 'react';
-import {Col, Layout, List, Row} from "antd";
+import styles from './Dialogs.module.css'
+import {Message, MessageType} from './message/Message';
+import {AddMessageFormRedux} from './addMessageForm/AddMessageForm';
+import {DialogItem, DialogsType} from './dialogItem/DialogItem';
+import {Redirect} from 'react-router-dom';
+
+type DialogsPageType = {
+    dialogs: Array<DialogsType>
+    messages: Array<MessageType>
+    newMessageBody: string
+    sendMessage: (values: string) => void
+    isAuth: boolean
+}
+
+export const Dialogs = (props: DialogsPageType) => {
+
+    let dialogsElements = props.dialogs.map(d => <DialogItem key={d.id} name={d.name} id={d.id} avatar={d.avatar}/>);
+
+    let messagesElements = props.messages.map(m => <Message key={m.id} id={m.id} message={m.message}/>);
+
+    let addNewMessage = (values: { newMessageBody: string }) => {
+        props.sendMessage(values.newMessageBody);
+        values.newMessageBody = '';
+    }
+
+    if (!props.isAuth) return <Redirect to={'/login'}/>;
+
+    return (
+        <div className={styles.dialogs}>
+            <div className={styles.dialogsItems}>
+                {dialogsElements}
+            </div>
+            <div className={styles.messages}>
+                <div>{messagesElements}</div>
+                <AddMessageFormRedux onSubmit={addNewMessage}/>
+            </div>
+        </div>
+    );
+};
+
+
+
+/*
 
 const {Content} = Layout;
+const {TextArea} = Input;
+const {Meta} = Card;
 
 const fakeData = [
     'Anna',
@@ -23,7 +67,29 @@ export const Dialogs = () => {
                         margin: '10px 16px',
                         padding: 24,
                     }}>
-                        <h1 style={{color: '#d7d7a7'}}>Dialogs</h1>
+                        <div style={{color: '#d7d7a7'}}>
+                            <>
+                                <Card style={{width: 300, marginTop: 10, padding: 0, textAlign: 'start'}} >
+                                    <Meta
+                                        avatar={<Avatar src="https://joesch.moe/api/v1/random?key=1"/>}
+                                        title="UserName"
+                                        description="Hello!"
+                                    />
+                                </Card>
+
+                                <Card style={{width: 300, marginTop: 10, padding: 0, textAlign: 'start'}} >
+                                    <Meta
+                                        avatar={<Avatar src="https://joesch.moe/api/v1/random?key=1"/>}
+                                        title="UserName"
+                                        description="How are you?"
+                                    />
+                                </Card>
+                            </>
+                        </div>
+                        <div style={{display:'flex',marginTop:20}}>
+                            <TextArea value={'Write message... '}/>
+                            <Button  style={{margin: 5,backgroundColor:'#d7d7a7'}}>Send</Button>
+                        </div>
                     </Content>
                 </Col>
                 <Col flex={1}>
@@ -49,3 +115,4 @@ export const Dialogs = () => {
     );
 };
 
+*/

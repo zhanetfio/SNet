@@ -1,4 +1,7 @@
-
+.menuBlock{
+    height: 100vh;
+    display: flex;
+}
 .trigger {
     padding: 0 24px;
     font-size: 18px;
