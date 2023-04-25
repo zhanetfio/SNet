@@ -2,7 +2,7 @@ import React, {useRef, useState} from 'react';
 import s from './ProfileInfo.module.css'
 import {ContactsType, ProfileType} from '../ProfileContainer';
 import ProfileDataForm from './ProfileDataForm';
-import {Avatar, Button, Col, Row} from 'antd';
+import {Avatar, Button, Col, Layout, Row} from 'antd';
 import {CameraOutlined, UserOutlined} from '@ant-design/icons';
 import {Preloader} from '../../../common/preloader/Preloader';
 import {ProfileStatusWithHooks} from './ProfileStatusWithHooks';
@@ -96,39 +96,51 @@ export type ProfileDataType = {
     isOwner: boolean
     goToEditMode: () => void
 }
+const {Content} = Layout;
 
 const ProfileData: React.FC<ProfileDataType> = ({profile, isOwner, goToEditMode}) => {
     return <div className={s.contact}>
-        <Row gutter={12} style={{flexFlow: 'nowrap'}}>
-            <Col span={12} className={s.selfInfo}>
-                <div className={s.infoItem}>
-                    <span className={s.title}>Full name: </span> {profile.fullName}
-                </div>
-                <div className={s.infoItem}>
-                    <span className={s.title}>Looking For A Job: </span>{profile.lookingForAJob ? 'yes' : 'no'}
-                </div>
-                {profile.lookingForAJob &&
+        <Content
+            style={{
+                display: 'flex',
+                margin: '10px 16px',
+                padding: 14,
+                minHeight: 200,
+                background: '#f5f5f5',
+            }}
+        >
+            <Row gutter={12} style={{flexFlow: 'nowrap'}}>
+                <Col span={12} className={s.selfInfo}>
                     <div className={s.infoItem}>
-                        <span className={s.title}>My professional skills: </span> {profile.lookingForAJobDescription}
-                    </div>}
-                <div className={s.infoItem}>
-                    <span className={s.title}>About Me: </span> {profile.aboutMe}
-                </div>
-            </Col>
-            <Col span={12} className={s.contactInfo}>
-                <div>
+                        <span className={s.title}>Full name: </span> {profile.fullName}
+                    </div>
+                    <div className={s.infoItem}>
+                        <span className={s.title}>Looking For A Job: </span>{profile.lookingForAJob ? 'yes' : 'no'}
+                    </div>
+                    {profile.lookingForAJob &&
+                        <div className={s.infoItem}>
+                            <span
+                                className={s.title}>My professional skills: </span> {profile.lookingForAJobDescription}
+                        </div>}
+                    <div className={s.infoItem}>
+                        <span className={s.title}>About Me: </span> {profile.aboutMe}
+                    </div>
+                </Col>
+                <Col span={12} className={s.contactInfo}>
+                    <div>
                     <span
                         className={s.title}>Contacts: </span> {profile.contacts && Object.keys(profile.contacts).map(key => {
 
-                    return <Contact key={key} contactTitle={key}
-                                    contactValue={profile.contacts[key as keyof ContactsType]}/>
-                })}
-                </div>
-                {isOwner && <div className={s.button_edit}>
-                    <button onClick={goToEditMode}>Edit</button>
-                </div>}
-            </Col>
-        </Row>
+                        return <Contact key={key} contactTitle={key}
+                                        contactValue={profile.contacts[key as keyof ContactsType]}/>
+                    })}
+                    </div>
+                    {isOwner && <div className={s.button_edit}>
+                        <button onClick={goToEditMode}>Edit</button>
+                    </div>}
+                </Col>
+            </Row>
+        </Content>
     </div>
 }
 

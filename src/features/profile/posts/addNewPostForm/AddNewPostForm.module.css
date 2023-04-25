@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+    align-items: center;
+}
+
+button{
+    margin: 5px;
+    border-radius: 6px;
+    width: 80px;
+    height: 34px;
+    cursor: pointer;
+    outline: none;
+    background: #d7d7a7;
+}
+.btn:hover {
+    transition: 1s ease-in-out;
+}

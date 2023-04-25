@@ -6,6 +6,7 @@
 .statusInfo{
     display: flex;
     flex-direction: column;
+    margin-left: 15px;
 }
 
 .profileImg img {
@@ -33,9 +34,8 @@
 }
 
 .contact {
-    width: 400px;
+    width: 65vw;
     border-radius: 15px;
-    /* text-shadow: #1890ff 0 0 2px;*/
 }
 
 .title {

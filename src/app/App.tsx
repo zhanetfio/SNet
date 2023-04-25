@@ -62,9 +62,10 @@ class App extends React.Component<AppPropsType> {
         }
 
         return (
-            <Layout className={'app-wrapper'}>
+            <div className={'app-wrapper'}>
                 <HeaderContainer/>
-                <Layout>
+                <div
+                    className={'content-block'}>
                     <Nav/>
                     <Switch>
                         <Route exact path="/" render={() => <Redirect to={'/login'}/>}/>
@@ -75,9 +76,9 @@ class App extends React.Component<AppPropsType> {
                         <Route path="/users" render={withSuspense(UsersContainer)}/>
                         <Route path={'*'} render={() => <div><Error404/></div>}/>
                     </Switch>
-                </Layout>
+                </div>
                 <Footer/>
-            </Layout>
+            </div>
 
         );
     }
