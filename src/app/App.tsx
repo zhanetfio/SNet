@@ -6,8 +6,8 @@ import {Footer} from '../common/components/footer/Footer';
 import HeaderContainer from '../common/components/header/HeaderContainer';
 import {Preloader} from '../common/preloader/Preloader';
 import store, {AppRootStateType} from './store';
-import {BrowserRouter, HashRouter, Redirect, Route, Switch, withRouter} from 'react-router-dom';
-import {Layout, notification} from 'antd';
+import { HashRouter, Redirect, Route, Switch, withRouter} from 'react-router-dom';
+import { notification} from 'antd';
 import {withSuspense} from '../hocs/withSuspense';
 import {LoginForm} from '../features/auth/Login';
 import {Error404} from '../common/error/Error404';
@@ -21,7 +21,7 @@ const UsersContainer = React.lazy(() => import('../features/users/UsersContainer
 
 class App extends React.Component<AppPropsType> {
 
- /*   catchAllUnhandledErrors = (promiseRejectionEvent: ) => {
+    catchAllUnhandledErrors = (promiseRejectionEvent:PromiseRejectionEvent) => {
         console.log(promiseRejectionEvent)
     }
 
@@ -33,8 +33,7 @@ class App extends React.Component<AppPropsType> {
     componentWillUnmount() {
         window.removeEventListener('unhandledrejection', this.catchAllUnhandledErrors);
     }
-*/
-    /* openNotificationWithIcon = (type: 'error') => {
+     openNotificationWithIcon = (type: 'error') => {
          notification[type]({
              message: this.props.globalError
          });
@@ -44,7 +43,7 @@ class App extends React.Component<AppPropsType> {
          if (this.props.globalError) {
              this.openNotificationWithIcon('error')
          }
-     }*/
+     }
 
     render() {
         if (!this.props.initialized) {
@@ -76,7 +75,7 @@ class App extends React.Component<AppPropsType> {
 
 type MapStatePropsType = {
     initialized: boolean,
-  /*  globalError: string | null*/
+    globalError: string | null
 }
 
 type MapDispatchToPropsType = {
@@ -86,7 +85,7 @@ export type AppPropsType = MapStatePropsType & MapDispatchToPropsType
 const mapStateToProps = (state: AppRootStateType): MapStatePropsType => ({
 
     initialized: state.app.initialized,
-  /*  globalError: state.app.globalError*/
+    globalError: state.app.globalError
 })
 
 let AppContainer = compose

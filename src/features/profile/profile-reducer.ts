@@ -2,7 +2,7 @@ import {PhotosType, ProfileType} from './ProfileContainer';
 import {PostsType} from './posts/post/Post';
 import {AppDispatch, AppThunk} from '../../app/store';
 import {profileAPI, usersAPI} from '../../api/api';
-// import {setAppError} from '../../app/app-reducer';
+import {setAppError} from '../../app/app-reducer';
 import {stopSubmit} from 'redux-form';
 
 let initialState = {
@@ -137,7 +137,7 @@ export const updateStatus = (status: string): AppThunk => async (dispatch: AppDi
             dispatch(setStatus(status))
         }
     } catch (error: any) {
-       /* dispatch(setAppError(error.message))*/
+        dispatch(setAppError(error.message))
     }
 }
 

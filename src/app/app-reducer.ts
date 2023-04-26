@@ -3,12 +3,12 @@ import {getAuthUserData} from '../features/auth/auth-reducer';
 
 let initialState: appType = {
     initialized: false,
-  /*  globalError: null,*/
+    globalError: null,
 }
 
 export type appType = {
     initialized: boolean,
-   /* globalError: null | string*/
+    globalError: null | string
 }
 
 export const appReducer = (state: appType = initialState, action: ActionsAppTypes): appType => {
@@ -18,19 +18,19 @@ export const appReducer = (state: appType = initialState, action: ActionsAppType
                 ...state,
                 initialized: true
             }
-        /*case "APP/SET_ERROR":
+        case "APP/SET_ERROR":
             return {
                 ...state, globalError: action.error
-            }*/
+            }
         default:
             return state;
     }
 }
 
-export type ActionsAppTypes = ReturnType<typeof initializedSuccess>/* | ReturnType<typeof setAppError>*/
+export type ActionsAppTypes = ReturnType<typeof initializedSuccess> | ReturnType<typeof setAppError>
 
 export const initializedSuccess = () => ({type: "APP/INITIALIZED_SUCCESS"}) as const
-//export const setAppError = (error: string | null) => ({type: "APP/SET_ERROR", error}) as const
+export const setAppError = (error: string | null) => ({type: "APP/SET_ERROR", error}) as const
 
 export const initializeApp = (): AppThunk => (dispatch: AppDispatch) => {
     let promise = dispatch(getAuthUserData());
