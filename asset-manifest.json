@@ -1,14 +1,30 @@
 {
   "files": {
-    "main.css": "/SNet/static/css/main.e7280704.css",
-    "main.js": "/SNet/static/js/main.90cd99a6.js",
+    "main.css": "/SNet/static/css/main.1be67727.css",
+    "main.js": "/SNet/static/js/main.95bc996b.js",
+    "static/css/901.9e8507ca.chunk.css": "/SNet/static/css/901.9e8507ca.chunk.css",
+    "static/js/901.f9951ceb.chunk.js": "/SNet/static/js/901.f9951ceb.chunk.js",
+    "static/css/278.509f6b5d.chunk.css": "/SNet/static/css/278.509f6b5d.chunk.css",
+    "static/js/278.cc5474a5.chunk.js": "/SNet/static/js/278.cc5474a5.chunk.js",
+    "static/css/775.b0556819.chunk.css": "/SNet/static/css/775.b0556819.chunk.css",
+    "static/js/775.3c586345.chunk.js": "/SNet/static/js/775.3c586345.chunk.js",
+    "static/js/981.a658c10d.chunk.js": "/SNet/static/js/981.a658c10d.chunk.js",
+    "static/js/853.d7c6704b.chunk.js": "/SNet/static/js/853.d7c6704b.chunk.js",
     "static/media/5191984.jpg": "/SNet/static/media/5191984.d597f472b2b3703b065f.jpg",
     "index.html": "/SNet/index.html",
-    "main.e7280704.css.map": "/SNet/static/css/main.e7280704.css.map",
-    "main.90cd99a6.js.map": "/SNet/static/js/main.90cd99a6.js.map"
+    "main.1be67727.css.map": "/SNet/static/css/main.1be67727.css.map",
+    "main.95bc996b.js.map": "/SNet/static/js/main.95bc996b.js.map",
+    "901.9e8507ca.chunk.css.map": "/SNet/static/css/901.9e8507ca.chunk.css.map",
+    "901.f9951ceb.chunk.js.map": "/SNet/static/js/901.f9951ceb.chunk.js.map",
+    "278.509f6b5d.chunk.css.map": "/SNet/static/css/278.509f6b5d.chunk.css.map",
+    "278.cc5474a5.chunk.js.map": "/SNet/static/js/278.cc5474a5.chunk.js.map",
+    "775.b0556819.chunk.css.map": "/SNet/static/css/775.b0556819.chunk.css.map",
+    "775.3c586345.chunk.js.map": "/SNet/static/js/775.3c586345.chunk.js.map",
+    "981.a658c10d.chunk.js.map": "/SNet/static/js/981.a658c10d.chunk.js.map",
+    "853.d7c6704b.chunk.js.map": "/SNet/static/js/853.d7c6704b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e7280704.css",
-    "static/js/main.90cd99a6.js"
+    "static/css/main.1be67727.css",
+    "static/js/main.95bc996b.js"
   ]
 }
