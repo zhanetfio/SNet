@@ -22,7 +22,6 @@ export const usersAPI = {
         return instance.delete<AxiosResponse<UserType>>(`follow/${userId}`)
     },
     getProfile(userId: number | null) {
-        console.log('Obsolete method. Please use profileAPI object.')
         return profileAPI.getProfile(userId)
     }
 }

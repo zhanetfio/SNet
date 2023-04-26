@@ -48,20 +48,3 @@ export const Users: React.FC<PropsType> = ({
     </div>
 };
 
-
-
-/*
-
-const {Content} = Layout;
-
-export const Contacts = () => {
-    return (
-        <div>
-            <Content>
-                Users
-            </Content>
-        </div>
-    );
-};
-
-*/

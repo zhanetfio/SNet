@@ -19,7 +19,7 @@ export const Post = (props: PostsType) => {
     const addLikesCount = () => {
         setLikes(props.likesCount + 1)
     }
-    console.log('likes: ' + likes)
+
     return (
         <div className={styles.item}>
             {photo
