@@ -1,5 +1,5 @@
 import React from 'react';
-import { Checkbox,  Input, Space} from 'antd';
+import {Checkbox, Input, Space} from 'antd';
 import styles from './Login.module.css'
 import {useAppDispatch, useAppSelector} from '../../common/hooks/hooks';
 import {Redirect} from 'react-router-dom';

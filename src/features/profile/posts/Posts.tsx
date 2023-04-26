@@ -10,7 +10,7 @@ type PropsType = {
     messageForNewPost: string
     addPost: (postMessage: string) => void
 }
-const { Content} = Layout;
+const {Content} = Layout;
 
 export const Posts = React.memo((props: PropsType) => {
 
@@ -37,10 +37,10 @@ export const Posts = React.memo((props: PropsType) => {
                     background: '#001529',
                 }}
             >
-            <AddNewPostFormRedux onSubmit={onAddPost}/>
-            <div className={styles.posts}>
-                {postsElements}
-            </div>
+                <AddNewPostFormRedux onSubmit={onAddPost}/>
+                <div className={styles.posts}>
+                    {postsElements}
+                </div>
             </Content>
         </div>
 

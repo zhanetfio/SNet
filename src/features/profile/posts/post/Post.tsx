@@ -12,7 +12,7 @@ export type PostsType = {
 const {Meta} = Card;
 
 export const Post = (props: PostsType) => {
-    const [likes, setLikes] = useState<number | null>(null)
+    const [likes, setLikes] = useState<number | null>(props.likesCount)
 
     const photo = useAppSelector(state => state.profilePage.profile.photos?.small)
 

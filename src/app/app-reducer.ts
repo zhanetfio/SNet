@@ -1,4 +1,4 @@
-import { AppDispatch, AppThunk} from './store';
+import {AppDispatch, AppThunk} from './store';
 import {getAuthUserData} from '../features/auth/auth-reducer';
 
 let initialState: appType = {
@@ -20,7 +20,7 @@ export const appReducer = (state: appType = initialState, action: ActionsAppType
             }
         case "APP/SET_ERROR":
             return {
-                ...state,globalError:action.error
+                ...state, globalError: action.error
             }
         default:
             return state;
@@ -29,7 +29,7 @@ export const appReducer = (state: appType = initialState, action: ActionsAppType
 
 export type ActionsAppTypes = ReturnType<typeof initializedSuccess> | ReturnType<typeof setAppError>
 
-export const initializedSuccess = () => ({type:"APP/INITIALIZED_SUCCESS"}) as const
+export const initializedSuccess = () => ({type: "APP/INITIALIZED_SUCCESS"}) as const
 export const setAppError = (error: string | null) => ({type: "APP/SET_ERROR", error}) as const
 
 export const initializeApp = (): AppThunk => (dispatch: AppDispatch) => {

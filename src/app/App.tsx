@@ -13,26 +13,19 @@ import {LoginForm} from '../features/auth/Login';
 import {Error404} from '../common/error/Error404';
 import {Nav} from '../common/components/nav/Nav';
 import {initializeApp} from './app-reducer';
+import ProfileContainer from '../features/profile/ProfileContainer';
+import DialogsContainer from '../features/dialogs/DialogsContainer';
+import UsersContainer from '../features/users/UsersContainer';
 
-const DialogsContainer = React.lazy(() => import('../features/dialogs/DialogsContainer'));
-const ProfileContainer = React.lazy(() => import('../features/profile/ProfileContainer'));
-const UsersContainer = React.lazy(() => import('../features/users/UsersContainer'));
-
-
-type MapStatePropsType = {
-    initialized: boolean,
-    globalError: string | null
-}
-
-type MapDispatchToPropsType = {
-    initializeApp: () => void
-}
-
-export type AppPropsType = MapStatePropsType & MapDispatchToPropsType
+//const DialogsContainer = React.lazy(() => import('../features/dialogs/DialogsContainer'));
+//const ProfileContainer = React.lazy(() => import('../features/profile/ProfileContainer'));
+//const UsersContainer = React.lazy(() => import('../features/users/UsersContainer'));
 
 class App extends React.Component<AppPropsType> {
-    catchAllUnhandledErrors = (promiseRejectionEvent: PromiseRejectionEvent) => {
-        console.error(promiseRejectionEvent)
+
+    catchAllUnhandledErrors = (promiseRejectionEvent: any) => {
+        alert('some error')
+        console.log(promiseRejectionEvent)
     }
 
     componentDidMount() {
@@ -44,17 +37,17 @@ class App extends React.Component<AppPropsType> {
         window.removeEventListener('unhandledrejection', this.catchAllUnhandledErrors);
     }
 
-    openNotificationWithIcon = (type: 'error') => {
-        notification[type]({
-            message: this.props.globalError
-        });
-    };
+    /* openNotificationWithIcon = (type: 'error') => {
+         notification[type]({
+             message: this.props.globalError
+         });
+     };
 
-    componentDidUpdate() {
-        if (this.props.globalError) {
-            this.openNotificationWithIcon('error')
-        }
-    }
+     componentDidUpdate() {
+         if (this.props.globalError) {
+             this.openNotificationWithIcon('error')
+         }
+     }*/
 
     render() {
         if (!this.props.initialized) {
@@ -74,7 +67,7 @@ class App extends React.Component<AppPropsType> {
                                render={withSuspense(ProfileContainer)}/>
                         <Route path="/dialogs" render={withSuspense(DialogsContainer)}/>
                         <Route path="/users" render={withSuspense(UsersContainer)}/>
-                        <Route path={'*'} render={() => <div><Error404/></div>}/>
+                        <Route path={'/*'} render={() => <div><Error404/></div>}/>
                     </Switch>
                 </div>
                 <Footer/>
@@ -84,6 +77,15 @@ class App extends React.Component<AppPropsType> {
     }
 }
 
+type MapStatePropsType = {
+    initialized: boolean,
+    globalError: string | null
+}
+
+type MapDispatchToPropsType = {
+    initializeApp: () => void
+}
+export type AppPropsType = MapStatePropsType & MapDispatchToPropsType
 const mapStateToProps = (state: AppRootStateType): MapStatePropsType => ({
 
     initialized: state.app.initialized,

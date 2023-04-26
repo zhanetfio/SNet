@@ -59,19 +59,18 @@ type PropsType = RouteComponentProps<PathParamsType> & OwnPropsType
 class ProfileContainer extends React.Component<PropsType> {
 
     refreshProfile() {
+
         let userId: string | undefined = this.props.match.params.userId;
         if (!userId) {
-
             userId = this.props.authorizedUserId?.toString()
             if (!userId) {
                 return this.props.history.push('/login');
             }
         }
-
-
         this.props.getUserProfile(Number(userId))
         this.props.getStatus(userId)
     }
+
 
     componentDidMount() {
         this.refreshProfile()
