@@ -6,25 +6,22 @@ import {Footer} from '../common/components/footer/Footer';
 import HeaderContainer from '../common/components/header/HeaderContainer';
 import {Preloader} from '../common/preloader/Preloader';
 import store, {AppRootStateType} from './store';
-import {BrowserRouter, Redirect, Route, Switch, withRouter} from 'react-router-dom';
+import {BrowserRouter, HashRouter, Redirect, Route, Switch, withRouter} from 'react-router-dom';
 import {Layout, notification} from 'antd';
 import {withSuspense} from '../hocs/withSuspense';
 import {LoginForm} from '../features/auth/Login';
 import {Error404} from '../common/error/Error404';
 import {Nav} from '../common/components/nav/Nav';
 import {initializeApp} from './app-reducer';
-import ProfileContainer from '../features/profile/ProfileContainer';
-import DialogsContainer from '../features/dialogs/DialogsContainer';
-import UsersContainer from '../features/users/UsersContainer';
 
-//const DialogsContainer = React.lazy(() => import('../features/dialogs/DialogsContainer'));
-//const ProfileContainer = React.lazy(() => import('../features/profile/ProfileContainer'));
-//const UsersContainer = React.lazy(() => import('../features/users/UsersContainer'));
+
+const DialogsContainer = React.lazy(() => import('../features/dialogs/DialogsContainer'));
+const ProfileContainer = React.lazy(() => import('../features/profile/ProfileContainer'));
+const UsersContainer = React.lazy(() => import('../features/users/UsersContainer'));
 
 class App extends React.Component<AppPropsType> {
 
-    catchAllUnhandledErrors = (promiseRejectionEvent: any) => {
-        alert('some error')
+ /*   catchAllUnhandledErrors = (promiseRejectionEvent: ) => {
         console.log(promiseRejectionEvent)
     }
 
@@ -36,7 +33,7 @@ class App extends React.Component<AppPropsType> {
     componentWillUnmount() {
         window.removeEventListener('unhandledrejection', this.catchAllUnhandledErrors);
     }
-
+*/
     /* openNotificationWithIcon = (type: 'error') => {
          notification[type]({
              message: this.props.globalError
@@ -79,7 +76,7 @@ class App extends React.Component<AppPropsType> {
 
 type MapStatePropsType = {
     initialized: boolean,
-    globalError: string | null
+  /*  globalError: string | null*/
 }
 
 type MapDispatchToPropsType = {
@@ -89,7 +86,7 @@ export type AppPropsType = MapStatePropsType & MapDispatchToPropsType
 const mapStateToProps = (state: AppRootStateType): MapStatePropsType => ({
 
     initialized: state.app.initialized,
-    globalError: state.app.globalError
+  /*  globalError: state.app.globalError*/
 })
 
 let AppContainer = compose
@@ -97,9 +94,9 @@ let AppContainer = compose
         AppRootStateType>(mapStateToProps, {initializeApp}))(App);
 
 export const GeneralApp = () => {
-    return <BrowserRouter>
+    return <HashRouter >
         <Provider store={store}>
             <AppContainer/>
         </Provider>
-    </BrowserRouter>
+    </HashRouter>
 }
