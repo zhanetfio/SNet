@@ -1,6 +1,6 @@
 import {AppDispatch, AppThunk} from "../../app/store";
 import {authAPI, securityAPI} from '../../api/api';
-import {setAppError} from '../../app/app-reducer';
+/*import {setAppError} from '../../app/app-reducer';*/
 
 
 
@@ -55,7 +55,7 @@ export const getAuthUserData = (): AppThunk => async (dispatch: AppDispatch) => 
 }
 
 export const login = (email: string, password: string, rememberMe: boolean, captcha: string): AppThunk => async (dispatch: AppDispatch) => {
-    dispatch(setAppError(null))
+   /* dispatch(setAppError(null))*/
     const response = await authAPI.login(email, password, rememberMe, captcha);
     if (response.data.resultCode === 0) {
         // success, get auth data
@@ -63,7 +63,7 @@ export const login = (email: string, password: string, rememberMe: boolean, capt
     } else if (response.data.resultCode === 10) {
         dispatch(getCaptchaUrl())
     } else if (response.data.resultCode === 1) {
-        dispatch(setAppError(response.data.messages[0]))
+        // dispatch(setAppError(response.data.messages[0]))
     }
 }
 
